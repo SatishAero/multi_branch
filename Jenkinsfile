@@ -30,19 +30,8 @@ pipeline {
                     def branchName = env.BRANCH_NAME
                     def containerName = "yourapp-${branchName}"
                     def imageName = "satishvarma123/yourapp:${branchName}"
-                    
-                    bat "docker run -d --name ${containerName} ${imageName}"
-                }
-            }
-        }
-
-        stage('Cleanup') {
-            steps {
-                script {
-                    def branchName = env.BRANCH_NAME
-                    def containerName = "yourapp-${branchName}"
-                    
-                    bat "docker rm -f ${containerName} || true"
+                     bat "docker rm -f ${containerName} || true"
+                    bat "docker run -d -p 8002:80 --name ${containerName} ${imageName}"
                 }
             }
         }
