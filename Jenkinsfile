@@ -31,7 +31,7 @@ pipeline {
                     def containerName = "yourapp-${branchName}"
                     def imageName = "satishvarma123/yourapp:${branchName}"
                      bat "docker rm -f ${containerName} || true"
-                    bat "docker run -d -p 8004:80--name ${containerName} ${imageName}"
+                    bat "docker run -d -p 8004:80 --name ${containerName} ${imageName}"
                 }
             }
         }
